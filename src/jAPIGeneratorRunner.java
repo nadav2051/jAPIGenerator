@@ -1,5 +1,5 @@
 
-public class jAPIGeneratorRunner {
+public class JAPIGeneratorRunner {
 
 	public static void main(String[] args) 
 	{
@@ -7,11 +7,11 @@ public class jAPIGeneratorRunner {
 		String presentWorkingDirectory = System.getProperty("user.dir");
 		if (args.length > 1 && args[1].compareTo("-r") == 0)
 		{
-			jAPIGenerator jenerator = new jAPIGenerator(args[0], true);
+			JAPIGenerator jenerator = new JAPIGenerator(args[0], true);
 		}
 		else
 		{
-			jAPIGenerator jenerator = new jAPIGenerator(args[0], false);
+			JAPIGenerator jenerator = new JAPIGenerator(args[0], false);
 		}
 
 	}

@@ -5,9 +5,9 @@ import java.lang.reflect.Modifier;
 
 
 
-public class jAPIGeneratorWriter {
+public class JAPIGeneratorWriter {
 
-	public jAPIGeneratorWriter(jAPIGeneratorClassHolder cholder)
+	public JAPIGeneratorWriter(JAPIGeneratorClassHolder cholder)
 	{
 		writeClassName(cholder.className);
 		writeConstructors(cholder.constructors);

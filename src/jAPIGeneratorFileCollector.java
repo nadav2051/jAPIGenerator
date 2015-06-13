@@ -5,14 +5,14 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 
-public class jAPIGeneratorFileCollector {
+public class JAPIGeneratorFileCollector {
 
 	Queue<File> directories = null;
 	ArrayList<File> files = null;
 
 
 	// Constructor.
-	public jAPIGeneratorFileCollector(String path, boolean recursive)
+	public JAPIGeneratorFileCollector(String path, boolean recursive)
 	{
 		loadAllClassFiles(path, recursive);
 
@@ -54,11 +54,6 @@ public class jAPIGeneratorFileCollector {
 				/* Pop the first index from the list */
 				loadDirectoryClassFileContent(directoryPath.getAbsolutePath());
 			}
-		}
-		else
-		{
-			/* Maintain consistent behavior - if non recursive, empty the queue anyway. */
-			directories.remove();
 		}
 	}
 	/***

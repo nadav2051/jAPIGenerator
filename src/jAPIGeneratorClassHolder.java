@@ -5,7 +5,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
-public class jAPIGeneratorClassHolder 
+public class JAPIGeneratorClassHolder 
 {
 	Method[] declaredMethods = null;
 	Field[]	declaredFields = null;
@@ -13,10 +13,10 @@ public class jAPIGeneratorClassHolder
 	String className;
 
 	@SuppressWarnings("resource")
-	public jAPIGeneratorClassHolder(File f, String basePath)
+	public JAPIGeneratorClassHolder(File f, String basePath)
 	{
 		/* Var initialization */
-		String path = jAPIGeneratorFileCollector.stripFileExtension(f.getAbsolutePath());
+		String path = JAPIGeneratorFileCollector.stripFileExtension(f.getAbsolutePath());
 		String base = basePath;
 		String relative = new File(base).toURI().relativize(new File(path).toURI()).getPath();
 
@@ -42,7 +42,7 @@ public class jAPIGeneratorClassHolder
 
 			/* Set up the URLClassLoader */
 			urlClassLoader = new URLClassLoader(classLoaderUrl);
-			String className = jAPIGeneratorFileCollector.getFileName(f);
+			String className = JAPIGeneratorFileCollector.getFileName(f);
 			c = urlClassLoader.loadClass(className);
 		} 
 		catch (ClassNotFoundException e)
