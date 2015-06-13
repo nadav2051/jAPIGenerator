@@ -25,6 +25,11 @@ public class jAPIGeneratorWriter {
 	
 	private void writeConstructors(Constructor[] cs)
 	{
+		if (cs == null || cs.length == 0)
+		{
+			System.out.println("------------- NO CONSTRUCTORS PRESENT ---------------");
+			return;
+		}
 		System.out.println("------------- CONSTRUCTORS FOR CLASS: " + cs[0].getDeclaringClass().getSimpleName() + " ---------------");
 		int i = 0;
 		for (Constructor c: cs)
@@ -55,6 +60,10 @@ public class jAPIGeneratorWriter {
 	}
 	private void writeProperties(Field[] fs)
 	{
+		if (fs == null || fs.length == 0)
+		{
+			return;
+		}
 		System.out.println("----------------------- CLASS PROPERTIES ------------------------");
 		for (Field f : fs)
 		{
@@ -66,6 +75,10 @@ public class jAPIGeneratorWriter {
 	}
 	private void writeMethods(Method[] ms)
 	{
+		if (ms == null || ms.length == 0)
+		{
+			return;
+		}
 		System.out.println("------------------------- METHODS --------------------------------");
 		for (Method m : ms)
 		{

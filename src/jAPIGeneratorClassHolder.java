@@ -46,6 +46,10 @@ public class jAPIGeneratorClassHolder
 			String className = jAPIGeneratorFileCollector.getFileName(f);
 			c = urlClassLoader.loadClass(className);
 		} 
+		catch (NoClassDefFoundError e)
+		{
+			System.out.println("ERROR: Tried loading class: " + className + " but couldn't - needs fully qualified name.");
+		}
 		catch (ClassNotFoundException e)
 		{
 			System.out.println("ERROR: Couldn't load class from path " + f.getAbsolutePath());
