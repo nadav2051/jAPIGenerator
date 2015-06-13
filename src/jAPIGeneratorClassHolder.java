@@ -84,37 +84,35 @@ public class jAPIGeneratorClassHolder
 		}
 
 		boolean retry = true;
-		while (retry)
 
+		if (c != null)
 		{
-			if (c != null)
-			{
-				this.declaredFields = c.getDeclaredFields();
-				this.declaredMethods = c.getDeclaredMethods();
-				this.constructors = c.getConstructors();
-			}
-
+			this.declaredFields = c.getDeclaredFields();
+			this.declaredMethods = c.getDeclaredMethods();
+			this.constructors = c.getConstructors();
 		}
 
-		private static String getClassPackage(String errorMsg)
-		{
-			// Start and end index of cutting
-			int startIndex = errorMsg.lastIndexOf(" ") + 1;
-			int endIndex = errorMsg.length() - 1;
-
-			// Let's save a substring
-			String classPackage = errorMsg.substring(startIndex, endIndex);
-
-			// Replace char '/' to '.'
-			classPackage = classPackage.replace('/', '.');
-
-			return classPackage;
-		}
-
-		private static String getPackageDir(String fullyQualifiedName)
-		{
-			int endIdx = fullyQualifiedName.lastIndexOf('.');
-
-			return fullyQualifiedName.substring(0, endIdx).replaceAll("\\.","\\/");
-		}
 	}
+
+	private static String getClassPackage(String errorMsg)
+	{
+		// Start and end index of cutting
+		int startIndex = errorMsg.lastIndexOf(" ") + 1;
+		int endIndex = errorMsg.length() - 1;
+
+		// Let's save a substring
+		String classPackage = errorMsg.substring(startIndex, endIndex);
+
+		// Replace char '/' to '.'
+		classPackage = classPackage.replace('/', '.');
+
+		return classPackage;
+	}
+
+	private static String getPackageDir(String fullyQualifiedName)
+	{
+		int endIdx = fullyQualifiedName.lastIndexOf('.');
+
+		return fullyQualifiedName.substring(0, endIdx).replaceAll("\\.","\\/");
+	}
+}
