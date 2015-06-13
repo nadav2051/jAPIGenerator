@@ -12,11 +12,12 @@ public class jAPIGeneratorFileCollector {
 
 
 	// Constructor.
-	public jAPIGeneratorFileCollector(String path)
+	public jAPIGeneratorFileCollector(String path, boolean recursive)
 	{
-		recursiveLoadAllFiles(path);
+		loadAllClassFiles(path, recursive);
+
 	}
-	
+
 	public ArrayList<File> getFileList()
 	{
 		return files;
@@ -24,7 +25,7 @@ public class jAPIGeneratorFileCollector {
 	/***
 	 * This runs untill directories are empty.
 	 */
-	private void recursiveLoadAllFiles(String path)
+	private void loadAllClassFiles(String path, boolean recursive)
 	{
 		/* Init the directories and files structure.*/
 		if (this.directories == null)
@@ -45,11 +46,19 @@ public class jAPIGeneratorFileCollector {
 		}
 		/* Load the initial data from the root folder given to us. */
 		loadDirectoryClassFileContent(path);
-		while (directories.isEmpty() == false)
+		if (recursive)
 		{
-			File directoryPath = directories.remove();
-			/* Pop the first index from the list */
-			loadDirectoryClassFileContent(directoryPath.getAbsolutePath());
+			while (directories.isEmpty() == false)
+			{
+				File directoryPath = directories.remove();
+				/* Pop the first index from the list */
+				loadDirectoryClassFileContent(directoryPath.getAbsolutePath());
+			}
+		}
+		else
+		{
+			/* Maintain consistent behavior - if non recursive, empty the queue anyway. */
+			directories.remove();
 		}
 	}
 	/***
@@ -101,7 +110,7 @@ public class jAPIGeneratorFileCollector {
 		retval = fullname.substring(startIdx, endIdx);
 		return retval;
 	}
-	
+
 	public static String getFileName(File f)
 	{
 		if (f == null)
@@ -135,7 +144,7 @@ public class jAPIGeneratorFileCollector {
 		}
 		/* Return substring of the extension. */
 		return filename.substring(0, endIdx);
-		 
+
 	}
 
 }

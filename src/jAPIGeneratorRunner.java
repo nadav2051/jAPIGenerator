@@ -5,8 +5,16 @@ public class jAPIGeneratorRunner {
 	{
 		// Init the working directory path string.
 		String presentWorkingDirectory = System.getProperty("user.dir");
-		jAPIGenerator jenerator = new jAPIGenerator("D:\\JavaWorkplace\\Ex3");
+		if (args[1].compareTo("-r") == 0)
+		{
+			jAPIGenerator jenerator = new jAPIGenerator(args[0], true);
+		}
+		else
+		{
+			jAPIGenerator jenerator = new jAPIGenerator(args[0], false);
+		}
 
 	}
+
 
 }
