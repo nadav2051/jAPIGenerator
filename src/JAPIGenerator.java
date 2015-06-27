@@ -20,6 +20,7 @@ public class JAPIGenerator {
 		{
 			new JAPIGeneratorWriter(c);
 		}
+		JAPIGeneratorHtmlMain html = new JAPIGeneratorHtmlMain(classes);
 	}
 	
 	

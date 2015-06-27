@@ -7,17 +7,18 @@ import java.lang.reflect.Modifier;
 
 public class JAPIGeneratorWriter {
 
+
 	public JAPIGeneratorWriter(JAPIGeneratorClassHolder cholder)
 	{
 		writeClassName(cholder.className);
 		writeConstructors(cholder.constructors);
 		writeProperties(cholder.declaredFields);
 		writeMethods(cholder.declaredMethods);
-
 	}
 
 	private void writeClassName(String className)
 	{
+		
 		System.out.println("====================================================================");
 		System.out.println("CLASS NAME: " + className);
 		System.out.println("====================================================================");
@@ -25,6 +26,7 @@ public class JAPIGeneratorWriter {
 	
 	private void writeConstructors(Constructor[] cs)
 	{
+		
 		if (cs == null || cs.length == 0)
 		{
 			System.out.println("------------- NO CONSTRUCTORS PRESENT ---------------");
@@ -73,6 +75,7 @@ public class JAPIGeneratorWriter {
 		}
 		System.out.println();
 	}
+
 	private void writeMethods(Method[] ms)
 	{
 		if (ms == null || ms.length == 0)
