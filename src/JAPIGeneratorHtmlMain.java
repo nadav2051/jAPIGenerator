@@ -22,10 +22,16 @@ public class JAPIGeneratorHtmlMain {
 			bw.write("<html>\n<head>\n<title>\nIndexer\n</title>\n</head>\n");
 			bw.write("<body>\n");
 			bw.write("<h3>Classes:</h3>\n");
+			bw.write("<table>");
 			for (JAPIGeneratorClassHolder c : classes){ 
+				bw.write("<tr>");
+				bw.write("<td>");
 				addClassesIndex(bw, c);
+				bw.write("</td>");
+				bw.write("</tr>");
 				outputToHtml(c);
 			}
+			bw.write("</table>");
 			bw.write("</body>\n");
 			bw.write("</html>\n");
 			bw.close();

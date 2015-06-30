@@ -45,30 +45,38 @@ public class JAPIGeneratorHtml {
 				bw.write("No Constructors\n");
 				return;
 			}
+			bw.write("<table>");
 			int i = 0;
 			for (Constructor c: cs)
 			{
 				int j = 0;
+				bw.write("<tr>\n");
+				bw.write("<td>");
 				bw.write("Constructor #" + i++ + ": \n");
-				bw.write(cs[0].getDeclaringClass().getSimpleName() + " - Arguments: \n");
-				// Args
+				bw.write("</tb>");
+				bw.write("</tr>\n");
+				bw.write("<tr>\n");
+				bw.write("<td>");
+				bw.write(modifiersToString(c.getModifiers()) + " ");
+				bw.write(cs[0].getDeclaringClass().getSimpleName() + "(");
 				String args = "";
 				for (Class<?> t : c.getParameterTypes())
 				{
-					args += t.getSimpleName() +" arg" + j++ + ", \n";
+					args += "<b>" + t.getSimpleName() + "</b> arg" + j++ + ", ";
 				}
 				if (args.length() == 0)
 				{
-					args = "None";
+					args = "";
 				}
 				else
 				{
 					args = args.substring(0, args.length()-2);
 				}
-				bw.write(args + "\n");
-				bw.write("Modifiers: " + modifiersToString(c.getModifiers()) + "\n");
-				bw.write("\n");
+				bw.write(args + ")\n");
+				bw.write("</td>");
+				bw.write("</tr>\n");
 			}
+			bw.write("</table>");
 		}
 		catch(Exception e){};
 	}
@@ -82,12 +90,20 @@ public class JAPIGeneratorHtml {
 				bw.write("No Properties\n");
 				return;
 			}
+			bw.write("<table>");
 			for (Field f : fs)
 			{
 				String mods = modifiersToString(f.getModifiers());
-
-				bw.write("Field name: " + f.getName() +  ", Field type: " + f.getType().getSimpleName() + ", Modifiers: " + mods + "\n");
+				bw.write("<tr>\n");
+				bw.write("<td>");
+				if (mods != "None"){
+					bw.write(mods + " ");
+				}
+				bw.write(f.getType().getSimpleName() + " " + f.getName() + ";");
+				bw.write("</td>");
+				bw.write("</tr>\n");
 			}
+			bw.write("</table>");
 		}
 		catch(Exception e){};
 	}
@@ -101,33 +117,34 @@ public class JAPIGeneratorHtml {
 				bw.write("No Methods\n");
 				return;
 			}
+			bw.write("<table>");
 			for (Method m : ms)
 			{
-				// Method name
-				bw.write("Method name:\t" + m.getName() + "\n");
-				// Modifiers
-				bw.write("Modifiers:\t" + modifiersToString(m.getModifiers()) + "\n");
-				// Return type
-				bw.write("Return type:\t" + m.getReturnType().getSimpleName() + "\n");
-				// Arguments
-				bw.write("Arguments:\t\n");
+				bw.write("<tr>\n");
+				bw.write("<td>");
+				bw.write(modifiersToString(m.getModifiers()) + " ");
+				bw.write(m.getReturnType().getSimpleName() + " ");
+				bw.write(m.getName() + " (");
 				String args = "";
 				int i = 0;
 				for (Class<?> t : m.getParameterTypes())
 				{
-					args += t.getSimpleName() + " arg"+ i++ +  ", ";
+					args += "<b>" + t.getSimpleName() + "</b> arg"+ i++ +  ", ";
 				}
 				if (args.length() == 0)
 				{
-					args = "None\n";
+					args = "";
 				}
 				else
 				{
 					args = args.substring(0, args.length()-2);
 				}
-				bw.write(args + "\n");
-
+				bw.write(args + ")");
+				bw.write("</td>");
+				bw.write("</tr>\n");
+				
 			}
+			bw.write("</table>");
 		}
 		catch(Exception e){};
 	}
