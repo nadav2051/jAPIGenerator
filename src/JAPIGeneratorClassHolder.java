@@ -10,6 +10,8 @@ public class JAPIGeneratorClassHolder
 	Method[] declaredMethods = null;
 	Field[]	declaredFields = null;
 	Constructor[] constructors = null;
+	Class[] interfaces;
+	Class superclass;
 	String className;
 
 	@SuppressWarnings("resource")
@@ -90,6 +92,8 @@ public class JAPIGeneratorClassHolder
 			this.declaredFields = c.getDeclaredFields();
 			this.declaredMethods = c.getDeclaredMethods();
 			this.constructors = c.getConstructors();
+			this.interfaces = c.getInterfaces();
+			this.superclass = c.getSuperclass();
 		}
 
 	}
