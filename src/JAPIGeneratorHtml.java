@@ -19,6 +19,7 @@ public class JAPIGeneratorHtml {
 			bw = new BufferedWriter(fw);
 			bw.write("<html>\n<head>\n<title>\n" + cholder.className + "\n</title>\n</head>\n");
 			bw.write("<body>\n");
+			writeInheritance(cholder.superclass, cholder.interfaces);
 			writeConstructors(cholder.constructors);
 			writeProperties(cholder.declaredFields);
 			writeMethods(cholder.declaredMethods);
@@ -37,9 +38,33 @@ public class JAPIGeneratorHtml {
 		catch(Exception e){};
 	}
 
+	public void writeInheritance(Class superclass, Class[] interfaces){
+		try{
+			bw.write("<h3>Inheritance:</h3>\n");
+			bw.write("<table>\n");
+			bw.write("<tr><td>" + superclass.getSimpleName() + "</td></tr>\n");
+			bw.write("</table>\n");
+			bw.write("<h3>Interfaces:</h3>\n");
+			bw.write("<table>\n");
+			if (interfaces.length == 0){
+				bw.write("none");
+			}
+			else{
+				for (Class i: interfaces)
+				{
+					bw.write("<tr><td>");
+					bw.write(i.getSimpleName());
+					bw.write("</td></tr>");
+				}
+			}
+			bw.write("</table>\n");
+		}
+		catch(Exception e){};
+	} 
+
 	public void writeConstructors(Constructor[] cs){
 		try{
-			bw.write("<h3>Constructors</h3>\n");
+			bw.write("<h3>Constructors:</h3>\n");
 			if (cs == null || cs.length == 0)
 			{
 				bw.write("No Constructors\n");
@@ -53,7 +78,7 @@ public class JAPIGeneratorHtml {
 				bw.write("<tr>\n");
 				bw.write("<td>");
 				bw.write("Constructor #" + i++ + ": \n");
-				bw.write("</tb>");
+				bw.write("</td>");
 				bw.write("</tr>\n");
 				bw.write("<tr>\n");
 				bw.write("<td>");
