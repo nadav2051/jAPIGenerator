@@ -16,7 +16,9 @@ public class JAPIGeneratorHtmlMain {
 	public JAPIGeneratorHtmlMain(ArrayList<JAPIGeneratorClassHolder> classes)
 	{
 		try{
-			File myfile = new File("index.html");
+			File theDir = new File("Output");
+			theDir.mkdir();
+			File myfile = new File("Output//index.html");
 			FileWriter fw = new FileWriter(myfile);
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write("<html>\n<head>\n<title>\nIndexer\n</title>\n</head>\n");

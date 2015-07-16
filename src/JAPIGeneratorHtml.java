@@ -14,7 +14,7 @@ public class JAPIGeneratorHtml {
 	public JAPIGeneratorHtml(JAPIGeneratorClassHolder cholder){
 
 		try{
-			File myfile = new File(cholder.className + ".html");
+			File myfile = new File("Output//" + cholder.className + ".html");
 			fw = new FileWriter(myfile);
 			bw = new BufferedWriter(fw);
 			bw.write("<html>\n<head>\n<title>\n" + cholder.className + "\n</title>\n</head>\n");
